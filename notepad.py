@@ -3,7 +3,9 @@ from kivy.uix.actionbar import ActionBar
 from kivy.uix.textinput import TextInput
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.popup import Popup
-from kivy.uix.filechooser import FileChooserListView
+from kivy.uix.filechooser import FileChooserListView,FileChooserIconView
+import os
+from kivy.properties import ObjectProperty
 
 class MyApp(App):
     title = 'Notepad'
@@ -13,6 +15,8 @@ class MyApp(App):
 
 
 class Notepad(BoxLayout):
+    data = ObjectProperty(None)
+
     def new_file(self):
         pass
 
@@ -28,10 +32,16 @@ class Notepad(BoxLayout):
 
 class MyPopup_open_file(Popup):
     def btn_cancel(self):
-        pass
+        self.dismiss()
 
     def btn_open(self, path, filename):
-        pass
+        self.f = open(os.path.join(path, filename[0]), 'r+')
+        self.data_open = self.f.read()
+        Notepad.data = self.data_open
+        print(Notepad.data)
+        self.f.close()
+        self.dismiss()
+
 
 
 """***************************************************************************************************************"""

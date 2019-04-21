@@ -22,24 +22,28 @@
 
     TextInput:
         id : data
+        text: root.data.text
 
 #"""*****************************************************************************************************************"""
 <MyPopup_open_file>:
     size_hint: None,None
-    size: 700,700
+    size: 900,700
     BoxLayout:
         orientation: 'vertical'
-        FileChooserListView:
+        FileChooserIconView:
             id: filechooser
 
         BoxLayout:
+            spacing: 50
             Button:
-                size_hint: 0.2,0.2
+                size_hint: None,None
+                size: 140,50
                 text: 'Open'
                 on_press: root.btn_open(filechooser.path, filechooser.selection)
 
             Button:
-                size_hint: 0.2,0.2
+                size_hint: None,None
+                size: 140,50
                 text: 'Cancel'
                 on_press: root.btn_cancel()
 
