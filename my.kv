@@ -1,0 +1,45 @@
+<Notepad>:
+    orientation: 'vertical'
+    data : data
+    ActionBar:
+        pos_hint : {'top':1}
+        ActionView:
+            use_separator: True
+            ActionPrevious:
+                title: 'Action Bar'
+                with_previous: False
+            ActionOverflow:
+            ActionButton:
+                important: True
+                text: 'New File'
+                on_press: root.new_file()
+            ActionButton:
+                text: 'Open File'
+                on_press : root.open_file()
+            ActionButton:
+                text: 'Save File'
+                on_press: root.save_file()
+
+    TextInput:
+        id : data
+
+#"""*****************************************************************************************************************"""
+<MyPopup_open_file>:
+    size_hint: None,None
+    size: 700,700
+    BoxLayout:
+        orientation: 'vertical'
+        FileChooserListView:
+            id: filechooser
+
+        BoxLayout:
+            Button:
+                size_hint: 0.2,0.2
+                text: 'Open'
+                on_press: root.btn_open(filechooser.path, filechooser.selection)
+
+            Button:
+                size_hint: 0.2,0.2
+                text: 'Cancel'
+                on_press: root.btn_cancel()
+
